@@ -8,10 +8,10 @@ window.onload = function() {
 
   var elementos = document.getElementsByTagName("img");
 
-
-  /////////////////////////////////////////////////////////
-
   var i=0;
+
+
+  //Funciones
 
   function ocultaImg(){
 
@@ -26,7 +26,7 @@ window.onload = function() {
 
   function muestraPrimera(){
 
-    ocultaImg;
+    ocultaImg();
 
     elementos[0].style.visibility = "visible";
 
@@ -35,14 +35,12 @@ window.onload = function() {
 
   function sigImagen(){
 
-    for(a=0; a<elementos.length; a++){
-
-      elementos[a].style.visibility = "hidden";
-    }
+    elementos[i].style.visibility = "hidden";
 
     if(i+1 > elementos.length-1)
       i=0;
-    else i++;
+    else
+      i++;
 
     elementos[i].style.visibility = "visible";
 
@@ -54,13 +52,20 @@ window.onload = function() {
 
     elementos[i].style.visibility = "hidden";
 
+    if(i-1 < 0)
+      i=elementos.length-1;
+    else
+        i--;
+
+      elementos[i].style.visibility = "visible";
   }
 
   ////////////////////////////////////////////////////////////
 
-  muestraPrimera;
+  muestraPrimera();
 
   bsig.onclick = sigImagen;
+  bant.onclick = antImagen;
 
 
 }
