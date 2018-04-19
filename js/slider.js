@@ -96,6 +96,9 @@ window.onload = function() {
   intervalo = false;
 
   setNumImg();
+  bant.innerHTML = "Anterior";
+  bsig.innerHTML = "Siguiente";
+  bpp.innerHTML = "Pausa";
   nint.value = t_int;
 
   bsig.onclick = sigImagen;
