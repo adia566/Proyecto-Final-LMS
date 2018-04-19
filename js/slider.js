@@ -5,6 +5,7 @@ var bpp;
 var nint;
 var nimg;
 
+var contenedor;
 var elementos;
 
 var i;
@@ -19,6 +20,8 @@ function ocultaImgs(){
 }
 
 function muestraPrimera(){
+  i=0;
+
   ocultaImgs();
   setNumImg();
 
@@ -78,49 +81,88 @@ function cambiarInt(){
   bpp.click();
 }
 
+function creaSlider(contenedor){
+  t_int = 3000;
+  intervalo = false;
+
+  //Crea un slider para cada elemento con dicha clase que haya en la página.
+  for(b=0; b<contenedor.length; b++){
+
+    elementos = contenedor[b].getElementsByTagName("img");
+
+    //Controles
+    bant = document.createElement("buttom");
+    bsig = document.createElement("buttom");
+    bpp = document.createElement("buttom");
+    nint = document.createElement("input");
+    nimg = document.createElement("input");
+
+    var contenido = document.createTextNode("Anterior");
+    bant.appendChild(contenido);
+
+    contenido = document.createTextNode("Siguiente");
+    bsig.appendChild(contenido);
+
+    contenido = document.createTextNode("Pausa");
+    bpp.appendChild(contenido);
+
+    contenido = document.createTextNode("");
+    nint.appendChild(contenido);
+
+    contenido = document.createTextNode(elementos.length);
+    nimg.appendChild(contenido);
+
+    document.body.appendChild(bant);
+    document.body.appendChild(bsig);
+    document.body.appendChild(bpp);
+    document.body.appendChild(nint);
+    document.body.appendChild(nimg);
+
+    nint.value = t_int;
+
+    //Estilos de los controles
+
+    bant.style.border = "2px solid black";
+    bant.style.padding = "2px";
+    bant.style.margin = "5px";
+    bant.style.width = "100px"
+
+    bsig.style.border = "2px solid black";
+    bsig.style.padding = "2px";
+    bsig.style.margin = "5px";
+
+    bpp.style.border = "2px solid black";
+    bpp.style.padding = "2px";
+    bpp.style.margin = "5px";
+    bpp.style.width = "100px";
+
+    nint.style.width = "10%";
+    nint.style.border = "2px solid black";
+    nint.style.margin = "5px";
+    nint.style.padding = "2px";
+
+    nimg.style.width = "10%";
+    nimg.style.border = "2px solid black";
+    nimg.style.margin = "5px";
+    nimg.style.padding = "2px";
+
+    //Eventos de los controles
+    bsig.onclick = sigImagen;
+    bant.onclick = antImagen;
+    bpp.onclick = playPause;
+    nint.onchange = cambiarInt;
+
+    //Inicializar el intervalo
+    muestraPrimera();
+    bpp.click();
+  }
+}
+
 
 //Inicio.
 window.onload = function() {
-  elementos = document.getElementsByTagName("img");
 
-  i=0;
-  t_int = 2000;
-  intervalo = false;
+  contenedor = document.getElementsByClassName("slider");
 
-  bant = document.createElement("buttom");
-  bsig = document.createElement("buttom");
-  bpp = document.createElement("buttom");
-  nint = document.createElement("input");
-  nimg = document.createElement("input");
-
-  var contenido = document.createTextNode("Anterior");
-  bant.appendChild(contenido);
-
-  contenido = document.createTextNode("Siguiente");
-  bsig.appendChild(contenido);
-
-  contenido = document.createTextNode("Pausa");
-  bpp.appendChild(contenido);
-
-  contenido = document.createTextNode("");
-  nint.appendChild(contenido);
-
-  contenido = document.createTextNode(elementos.length);
-  nimg.appendChild(contenido);
-
-  document.body.appendChild(bant);
-  document.body.appendChild(bsig);
-  document.body.appendChild(bpp);
-  document.body.appendChild(nint);
-  document.body.appendChild(nimg);
-
-  nint.value = t_int;
-
-  bsig.onclick = sigImagen;
-  bant.onclick = antImagen;
-  bpp.onclick = playPause;
-  nint.onchange = cambiarInt;
-
-  muestraPrimera();
-  bpp.click();
+  creaSlider(contenedor);
 }

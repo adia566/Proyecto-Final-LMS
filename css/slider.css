@@ -8,16 +8,18 @@
   text-align: center;
 
   top: 30px;
-
   width: 60%;
-
-
 }
 
 #banerfront img{
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.slider{
+  float:left;
+  clear: both;
 }
 
 .slider li{
