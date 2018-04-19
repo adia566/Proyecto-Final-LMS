@@ -1,9 +1,9 @@
 // Variables.
 var bant;
 var bsig;
-var bpp
-var nint
-var nimg
+var bpp;
+var nint;
+var nimg;
 
 var elementos;
 
@@ -12,7 +12,6 @@ var intervalo;
 var t_int;
 
 //Funciones.
-
 function ocultaImgs(){
 
   for(a=0; a<elementos.length; a++){
@@ -35,6 +34,8 @@ function sigImagen(){
     i++;
 
   elementos[i].style.visibility = "visible";
+
+  setNumImg();
 }
 
 function antImagen(){
@@ -45,23 +46,29 @@ function antImagen(){
   else
       i--;
 
-    elementos[i].style.visibility = "visible";
+  elementos[i].style.visibility = "visible";
+
+  setNumImg();
 }
 
 function setNumImg(){
   nimg.readOnly = true;
 
-  nimg.value = elementos.length + " imagenes";
+  nimg.value = i+1 + " de " + elementos.length;
 }
 
 function playPause(){
-  if(intervalo==false)
+
+  if(intervalo==false){
     intervalo = setInterval(sigImagen, t_int);
 
-  else{
+    bpp.innerHTML = "Pausa";
+  }else{
     clearInterval(intervalo);
 
     intervalo = false;
+
+    bpp.innerHTML = "Play";
   }
 }
 
@@ -74,6 +81,7 @@ function cambiarInt(){
 }
 
 
+//Inicio.
 window.onload = function() {
   bant = document.getElementById("bant");
   bsig = document.getElementById("bsig");
@@ -84,7 +92,7 @@ window.onload = function() {
   elementos = document.getElementsByTagName("img");
 
   i=0;
-  t_int = 3000;
+  t_int = 2000;
   intervalo = false;
 
   setNumImg();
