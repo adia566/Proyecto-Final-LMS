@@ -20,7 +20,15 @@ function ocultaImgs(){
 
 function muestraPrimera(){
   ocultaImgs();
-  elementos[0].style.visibility = "visible";
+  setNumImg();
+
+  elementos[i].style.visibility = "visible";
+
+}
+
+function setNumImg(){
+  nimg.readOnly = true;
+  nimg.value = i+1 + " de " + elementos.length;
 }
 
 function sigImagen(){
@@ -47,11 +55,6 @@ function antImagen(){
 
   elementos[i].style.visibility = "visible";
   setNumImg();
-}
-
-function setNumImg(){
-  nimg.readOnly = true;
-  nimg.value = i+1 + " de " + elementos.length;
 }
 
 function playPause(){
