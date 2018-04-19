@@ -3,13 +3,12 @@ window.onload = function() {
   var bant = document.getElementById("bant");
   var bsig = document.getElementById("bsig");
   var bpp = document.getElementById("bpp");
-  var bint = document.getElementById("bint");
-  var bimg = document.getElementById("bimg");
+  var nint = document.getElementById("bint");
+  var nimg = document.getElementById("bimg");
 
   var elementos = document.getElementsByTagName("img");
 
   var i=0;
-
 
   //Funciones
 
@@ -60,12 +59,55 @@ window.onload = function() {
       elementos[i].style.visibility = "visible";
   }
 
-  ////////////////////////////////////////////////////////////
+  function setNumImg(){
+    nimg.readOnly = true;
+    nimg.value = elementos.length + " imagenes";
+  }
 
-  muestraPrimera();
+  function setNumInt(){
+    nint.vale = intervalo.seconds;
+  }
+
+  function playPause(){
+
+    if(intervalo==false)
+      intervalo = setInterval(sigImagen, t_int);
+
+    else{
+      clearInterval(intervalo);
+
+      intervalo = false;
+    }
+
+  }
+
+  function cambiarInt(){
+
+    bpp.click();
+
+    t_int = nint.value;
+
+    bpp.click();
+
+  }
+
+  ////////////////////////////////////////////////////////////
+  var intervalo;
+  var t_int = 3000;
+  intervalo = false;
 
   bsig.onclick = sigImagen;
   bant.onclick = antImagen;
+  bpp.onclick = playPause;
+
+  nint.value = t_int;
+
+  nint.onchange = cambiarInt;
+
+  muestraPrimera();
+  setNumImg();
+  setNumInt();
+  bpp.click();
 
 
 }
